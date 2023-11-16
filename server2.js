@@ -28,7 +28,7 @@ const db = mysql.createConnection({
     }
   });
   app.get('/', (req, res) => {
-    res.render('login');
+    res.render('homepage');
 
       });
       app.get('/login', (req, res) => {
@@ -60,6 +60,44 @@ const db = mysql.createConnection({
       `);        }
       })
     });
+
+    const User_Id =generateUser_Id();
+    function generateUser_Id() {
+      return Math.floor(Math.random() * 1000000).toString();
+    };
+
+
+    app.get('/register',(req,res)=>{
+      res.render('register');
+    });
+
+    app.post('/register', (req, res) => {
+        const {User_Name,First_Name,Last_Name,Phone,Email,Password} = req.body;
+    
+        const query = 'INSERT INTO user (UserId,First_Name,Last_Name,Phone,User_Name,Email,Password) VALUES (?,?,?,?,?,?,?)';
+        const values = [User_Id,First_Name,Last_Name,Phone,User_Name,Email,Password];
+        db.query(query,values, (err, result) => {
+          if (err) {
+            console.error('Error inserting data into database:', err);
+            res.status(500).send('Error inserting data into database.');
+            return;
+          } else {
+           res.send(`
+        <script>
+          alert("Signup successfully!");
+          window.location.href = "/login"; // Redirect back to the form
+        </script>
+      `); 
+          }
+        })
+      });      
+    
+
+
+
+
+
+
 
   global.myarray=[]
   app.get('/dash', (req, res) => {
@@ -116,8 +154,6 @@ const Requirements_ID=generateRequirements_ID();
 const Property_Id2 =generateProperty_Id();
 const Property_Id3 =generateProperty_Id();
 const Property_Id4 =generateProperty_Id();
-
-
 
 function generateProperty_Id() {
   return Math.floor(Math.random() * 1000000).toString();
