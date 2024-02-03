@@ -3,6 +3,7 @@
 
  Description:
 The Real Estate Admin Dashboard powered by Node.js and SQL is a powerful tool that streamlines the management of real estate operations. It provides real estate agents, brokers, and administrators with a centralized platform to organize, monitor, and analyze property data and transactions.
+![Picture1](https://github.com/kyle89891/Project-Management-Tool/assets/81356431/2e959c24-5d65-499f-9f41-fb52c1ff1f19)
 
 Key Features:
 
